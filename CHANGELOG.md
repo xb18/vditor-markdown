@@ -32,9 +32,11 @@
 
 * [open issues](https://github.com/Vanessa219/vditor/issues)
 
+### v4.0.1 / 2026
+* [改进 blockquote 和 callout 样式](https://github.com/Vanessa219/vditor/issues/1941) `改进功能`
+
 ### v4.0.0 / 2026-08-30
 
-* [改进 blockquote 和 callout 样式](https://github.com/Vanessa219/vditor/issues/1941) `改进功能`
 * [WYSIWYG 和 IR 模式保存时会写入不换行空格](https://github.com/Vanessa219/vditor/issues/1938) `修复缺陷`
 * [上传失败时编辑器内容会被修改](https://github.com/Vanessa219/vditor/issues/1918) `修复缺陷`
 * [工具栏按钮在表单中会触发表单提交](https://github.com/Vanessa219/vditor/issues/1907) `修复缺陷`
