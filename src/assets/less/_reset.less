@@ -152,11 +152,26 @@
             margin-bottom: 16px;
         }
 
-        blockquote {
-            padding: 0 1em;
-            color: #6a737d;
-            border-left: 0.25em solid #eaecef;
+        blockquote:not(.callout) {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 0 0 0 calc(0.25em + 6px);
+            color: var(--blockquote-text-color, #5f6368);
+            background-color: transparent;
+            border: 0;
             margin: 0 0 16px 0;
+
+            &::before {
+                position: absolute;
+                top: 6px;
+                bottom: 6px;
+                left: 2px;
+                width: 0.25em;
+                content: "";
+                background-color: var(--blockquote-border-color, #e0e0e0);
+                border-radius: 6px;
+            }
 
             & > :first-child {
                 margin-top: 0;
@@ -164,6 +179,13 @@
 
             & > :last-child {
                 margin-bottom: 0;
+            }
+
+            & > p {
+                padding: 4px;
+                margin: 2px 0;
+                line-height: 1.625;
+                border-radius: 6px;
             }
         }
 
@@ -652,67 +674,97 @@
 .vditor-reset .callout,
 .vditor-wysiwyg blockquote.callout,
 .vditor-ir blockquote.callout {
-    --callout-color: var(--callout-note-color, #0969da);
-    --callout-background-color: var(--callout-note-background-color, rgba(9, 105, 218, 0.08));
+    --callout-color: var(--callout-note-color, #3575f0);
     position: relative;
+    display: flex;
+    flex-direction: column;
     margin: 0 0 16px;
-    padding: 0.75em 1em;
-    color: inherit;
-    background-color: var(--callout-background-color);
+    padding: 0 0 0 calc(0.25em + 6px);
+    color: var(--blockquote-text-color, #5f6368);
     border: 0;
-    border-left: 0.25em solid var(--callout-color);
+
+    &::before {
+        position: absolute;
+        top: 6px;
+        bottom: 6px;
+        left: 2px;
+        width: 0.25em;
+        content: "";
+        background-color: var(--callout-color);
+        border-radius: 6px;
+    }
 
     &[data-subtype="TIP"] {
-        --callout-color: var(--callout-tip-color, #1a7f37);
-        --callout-background-color: var(--callout-tip-background-color, rgba(26, 127, 55, 0.08));
+        --callout-color: var(--callout-tip-color, #65b84d);
     }
 
     &[data-subtype="IMPORTANT"] {
-        --callout-color: var(--callout-important-color, #8250df);
-        --callout-background-color: var(--callout-important-background-color, rgba(130, 80, 223, 0.08));
+        --callout-color: var(--callout-important-color, #8957e5);
     }
 
     &[data-subtype="WARNING"] {
-        --callout-color: var(--callout-warning-color, #9a6700);
-        --callout-background-color: var(--callout-warning-background-color, rgba(154, 103, 0, 0.08));
+        --callout-color: var(--callout-warning-color, #ff9632);
     }
 
     &[data-subtype="CAUTION"] {
-        --callout-color: var(--callout-caution-color, #cf222e);
-        --callout-background-color: var(--callout-caution-background-color, rgba(207, 34, 46, 0.08));
+        --callout-color: var(--callout-caution-color, #d23f31);
     }
 
     > .callout-info {
         display: flex;
         align-items: center;
         min-height: 1.5em;
-        margin: 0 0 0.5em;
+        margin: 2px 0;
+        padding: 4px;
         color: var(--callout-color);
-        font-weight: 600;
 
         .callout-icon {
-            display: inline-flex;
+            display: flex;
             align-items: center;
-            margin-right: 0.35em;
+            justify-content: center;
+            width: 1.2em;
+            height: 1.2em;
+            padding: 4px;
+            line-height: 1.2em;
+            text-align: center;
+            font-variant-emoji: emoji;
+            border-radius: 6px;
+
+            &:empty {
+                display: none;
+            }
         }
 
         .callout-title {
+            flex: 1;
             min-width: 1px;
+            margin-left: 4px;
+            font-size: 114%;
+            font-weight: 500;
+            opacity: 0.86;
         }
 
         .callout-img,
         > .callout-img {
-            width: 1.2em;
             height: 1.2em;
-            margin-right: 0.35em;
-            object-fit: contain;
+            width: 100%;
         }
     }
 
-    > .callout-content > :last-child,
-    > :last-child {
-        margin-bottom: 0;
+    > p:not(.callout-info),
+    > .callout-content > p {
+        padding: 4px;
+        margin: 2px 0;
+        line-height: 1.625;
+        border-radius: 6px;
     }
+}
+
+.vditor-wysiwyg blockquote.callout > .callout-info,
+.vditor-ir blockquote.callout > .callout-info {
+    font-size: 114%;
+    font-weight: 500;
+    opacity: 0.86;
 }
 
 .vditor-wysiwyg__callout-marker {
